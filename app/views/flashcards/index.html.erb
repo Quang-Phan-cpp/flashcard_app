@@ -1,7 +1,10 @@
 <div class="flashcard-header">
   <h1>Flashcards</h1>
 
-  <%= link_to "New Flashcard", new_flashcard_path, class: "new-flashcard-btn" %>
+  <div class="flashcard-actions">
+    <%= link_to "Study mode", study_flashcards_path, class: "study-mode-btn" %>
+    <%= link_to "New Flashcard", new_flashcard_path, class: "new-flashcard-btn" %>
+  </div>
 </div>
 
 <div class="cards">

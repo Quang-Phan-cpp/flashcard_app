@@ -1,0 +1,27 @@
+<div class="study-view" data-controller="study" data-study-cards-value='<%= raw @flashcards.to_json(only: [:word, :meaning, :example, :level]) %>'>
+  <div class="study-header">
+    <h1>Study mode</h1>
+    <%= link_to "Back to list", flashcards_path, class: "study-mode-btn" %>
+  </div>
+
+  <% if @flashcards.empty? %>
+    <p>Không có flashcard nào để học. <%= link_to "Quay lại danh sách", flashcards_path %></p>
+  <% else %>
+    <div class="study-card" data-action="click->study#toggleAnswer">
+      <h2 data-study-target="word"></h2>
+
+      <div class="study-answer" data-study-target="answer">
+        <p><strong>Ý nghĩa:</strong> <span data-study-target="meaning"></span></p>
+        <p><strong>Ví dụ:</strong> <span data-study-target="example"></span></p>
+        <p><strong>Cấp độ:</strong> <span data-study-target="level"></span></p>
+      </div>
+    </div>
+
+    <div class="study-buttons">
+      <button type="button" class="study-btn primary" data-action="study#toggleAnswer" data-study-target="toggleBtn">Hiển thị đáp án</button>
+      <button type="button" class="study-btn secondary" data-action="study#nextCard">Tiếp theo</button>
+    </div>
+
+    <p class="study-progress" data-study-target="progress"></p>
+  <% end %>
+</div>

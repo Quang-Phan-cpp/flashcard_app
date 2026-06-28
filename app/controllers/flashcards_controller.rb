@@ -6,6 +6,11 @@ class FlashcardsController < ApplicationController
     @flashcards = Flashcard.all
   end
 
+  # GET /flashcards/study
+  def study
+    @flashcards = Flashcard.all.order(:id)
+  end
+
   # GET /flashcards/1 or /flashcards/1.json
   def show
   end
@@ -60,11 +65,11 @@ class FlashcardsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_flashcard
-      @flashcard = Flashcard.find(params.expect(:id))
+      @flashcard = Flashcard.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def flashcard_params
-      params.expect(flashcard: [ :word, :meaning, :example, :level ])
+      params.require(:flashcard).permit(:word, :meaning, :example, :level)
     end
 end
